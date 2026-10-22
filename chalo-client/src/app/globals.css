@@ -1,0 +1,163 @@
+@import "tailwindcss";
+
+:root {
+  /* Softly Marketing Palette */
+  --soft-bg: #fdfcf8;
+  --soft-sage: #e8efe8;
+  --soft-lavender: #efedf4;
+  --soft-coral: #ffb7b2;
+  --soft-coral-dark: #ff9e98;
+  --soft-dark: #292524;
+  --soft-muted: #78716c;
+  --soft-border: rgba(41, 37, 36, 0.08);
+
+  /* Chalo App/Dashboard Harmonized Brand Theme */
+  --bg-main: #fdfcf8;
+  --bg-card: #ffffff;
+  --bg-card-light: #f7f6f0;
+  --accent-primary: #ffb7b2;
+  --accent-hover: #ff9e98;
+  --border-color: #e7e5e4;
+  --text-light: #fdfcf8;
+  --text-dark: #292524;
+  --success: #10b981;
+  --warning: #f59e0b;
+  --error: #ef4444;
+}
+
+@theme {
+  --color-soft-bg: var(--soft-bg);
+  --color-soft-sage: var(--soft-sage);
+  --color-soft-lavender: var(--soft-lavender);
+  --color-soft-coral: var(--soft-coral);
+  --color-soft-coral-dark: var(--soft-coral-dark);
+  --color-soft-dark: var(--soft-dark);
+  --color-soft-muted: var(--soft-muted);
+  --color-soft-border: var(--soft-border);
+
+  --color-brand-main: var(--bg-main);
+  --color-brand-card: var(--bg-card);
+  --color-brand-card-light: var(--bg-card-light);
+  --color-brand-accent: var(--accent-primary);
+  --color-brand-hover: var(--accent-hover);
+  --color-brand-border: var(--border-color);
+}
+
+@keyframes float-slow {
+  0%,
+  100% {
+    transform: translateY(0px) scale(1);
+  }
+  50% {
+    transform: translateY(-16px) scale(1.03);
+  }
+}
+
+@keyframes float-slow-reverse {
+  0%,
+  100% {
+    transform: translateY(0px) scale(1);
+  }
+  50% {
+    transform: translateY(16px) scale(0.97);
+  }
+}
+
+@keyframes pulse-subtle {
+  0%,
+  100% {
+    box-shadow: 0 4px 20px -2px rgba(255, 183, 178, 0.4);
+  }
+  50% {
+    box-shadow: 0 8px 30px 4px rgba(255, 183, 178, 0.7);
+  }
+}
+
+.animate-float-slow {
+  animation: float-slow 7s ease-in-out infinite;
+}
+
+.animate-float-slow-reverse {
+  animation: float-slow-reverse 8s ease-in-out infinite;
+}
+
+.animate-pulse-subtle {
+  animation: pulse-subtle 3s ease-in-out infinite;
+}
+
+.font-handwriting {
+  font-family:
+    "Reenie Beanie", "Caveat", "Brush Script MT", "Segoe Script", cursive;
+}
+
+/* Subtle SVG Grain Overlay */
+.bg-grain {
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.035'/%3E%3C/svg%3E");
+}
+
+/* Custom scrollbar for modern feel */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(41, 37, 36, 0.15);
+  border-radius: 9999px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(41, 37, 36, 0.3);
+}
+
+/* -------------------------------------------------------------
+ * Leaflet Z-Index Isolation & Hierarchy
+ * Leaflet defaults (.leaflet-pane at 400-700, .leaflet-top/bottom at 1000)
+ * bleed above standard application modals (z-50) and dropdowns.
+ * We isolate Leaflet map containers into a self-contained stacking context
+ * (z-index: 1) and cap internal panes so they never leak above z-30.
+ * ------------------------------------------------------------- */
+.leaflet-container {
+  z-index: 1 !important;
+  position: relative;
+  isolation: isolate;
+}
+
+.leaflet-pane {
+  z-index: 10 !important;
+}
+
+.leaflet-tile-pane {
+  z-index: 5 !important;
+}
+
+.leaflet-overlay-pane {
+  z-index: 12 !important;
+}
+
+.leaflet-shadow-pane {
+  z-index: 14 !important;
+}
+
+.leaflet-marker-pane {
+  z-index: 16 !important;
+}
+
+.leaflet-tooltip-pane {
+  z-index: 18 !important;
+}
+
+.leaflet-popup-pane {
+  z-index: 20 !important;
+}
+
+.leaflet-control {
+  z-index: 25 !important;
+}
+
+.leaflet-top,
+.leaflet-bottom {
+  z-index: 25 !important;
+}
+

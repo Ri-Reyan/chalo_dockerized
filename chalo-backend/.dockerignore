@@ -1,0 +1,30 @@
+# Dependencies
+node_modules/
+
+# TypeScript build output
+dist/
+
+# Git & repository artifacts
+.git/
+.gitignore
+
+# Environment & secrets
+.env*
+!.env.example
+
+# Debug and runtime logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.pnpm-debug.log*
+
+# IDE & AI tooling metadata
+.agents/
+.claude/
+.cursor/
+.devin/
+
+# Misc local & OS artifacts
+.DS_Store
+*.pem
+

@@ -1,0 +1,37 @@
+services:
+  backend:
+    build:
+      context: ./chalo-backend
+      dockerfile: Dockerfile
+    image: chalo-backend:latest
+    container_name: chalo-backend
+    ports:
+      - "4000:4000"
+    env_file:
+      - ./chalo-backend/.env
+    healthcheck:
+      test:
+        - "CMD"
+        - "node"
+        - "-e"
+        - "const http = require('http'); const req = http.get('http://127.0.0.1:4000/', (res) => process.exit(res.statusCode === 200 ? 0 : 1)); req.on('error', () => process.exit(1)); req.setTimeout(2000, () => { req.destroy(); process.exit(1); });"
+      interval: 10s
+      timeout: 3s
+      retries: 5
+      start_period: 10s
+    restart: unless-stopped
+
+  frontend:
+    build:
+      context: ./chalo-client
+      dockerfile: Dockerfile
+      args:
+        NEXT_PUBLIC_API_URL: http://localhost:4000/api
+    image: chalo-client:latest
+    container_name: chalo-client
+    ports:
+      - "3000:3000"
+    depends_on:
+      backend:
+        condition: service_healthy
+    restart: unless-stopped
